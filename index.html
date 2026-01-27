@@ -20,12 +20,6 @@
       overflow: hidden;
     }
 
-    /* IMAGE */
-    .magnolia-image img {
-      width: 100%;
-      display: block;
-    }
-
     .magnolia-preview,
     .magnolia-full {
       padding: 48px 36px;
@@ -54,10 +48,19 @@
     }
 
     .magnolia-card:hover .magnolia-full {
-      max-height: 1200px;
+      max-height: 1400px;
       opacity: 1;
       transform: translateY(0);
       padding: 48px 36px;
+    }
+
+    /* IMAGE */
+    .magnolia-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-top: 1px solid #e3e3e3;
+      border-bottom: 1px solid #e3e3e3;
     }
   </style>
 </head>
@@ -97,11 +100,6 @@
   <!-- CARD -->
   <div class="magnolia-card">
 
-    <!-- IMAGE -->
-    <div class="magnolia-image">
-      <img src="magnolia-ridge.jpg" alt="The Magnolia Ridge exterior">
-    </div>
-
     <!-- PREVIEW -->
     <div class="magnolia-preview">
       <h2 style="
@@ -124,6 +122,13 @@
         Two-Story Texas-Inspired Home
       </p>
     </div>
+
+    <!-- IMAGE -->
+    <img
+      src="magnolia-ridge.png"
+      alt="The Magnolia Ridge exterior preview"
+      class="magnolia-image"
+    >
 
     <!-- FULL -->
     <div class="magnolia-full">
