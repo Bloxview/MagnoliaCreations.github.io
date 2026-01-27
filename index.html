@@ -2,223 +2,495 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Magnolia Creations</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magnolia Creations - Premium Architectural Preset Builds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    body {
+    :root {
+      --primary-dark: #1a1a1a;
+      --primary-light: #f8f6f2;
+      --accent: #8b4513;
+      --accent-light: #a05a2c;
+      --text-primary: #2d2d2d;
+      --text-secondary: #666;
+      --text-tertiary: #999;
+      --border: #e6e1d7;
+      --shadow: rgba(0, 0, 0, 0.08);
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    }
+
+    * {
       margin: 0;
-      background-color: #f4f4f4;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f9f7f3 0%, #f0ede6 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* Header Styles */
+    .site-header {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 40px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    }
+
+    .logo {
+      font-family: 'Crimson Text', serif;
+      font-size: 3.5rem;
+      font-weight: 400;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .logo::after {
+      content: '✦';
+      position: absolute;
+      top: -10px;
+      right: -25px;
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    .tagline {
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-weight: 300;
+    }
+
+    .header-subtitle {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 20px auto 0;
+      font-weight: 300;
+    }
+
+    /* Card Container */
+    .card-container {
+      max-width: 900px;
+      margin: 60px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      padding: 0 24px;
+    }
+
+    /* Card Styles */
+    .magnolia-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px var(--shadow);
+      transition: var(--transition);
+      border: 1px solid var(--border);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .magnolia-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: white;
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      z-index: 2;
+    }
+
+    .card-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .magnolia-card:hover .card-image {
+      transform: scale(1.03);
+    }
+
+    .card-content {
+      padding: 28px;
+    }
+
+    .card-title {
+      font-family: 'Crimson Text', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .card-subtitle {
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .card-description {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .card-features {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .card-features li {
+      padding: 6px 0;
+      color: var(--text-primary);
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .card-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .card-price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .price-amount {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .price-label {
+      font-size: 0.9rem;
+      color: var(--text-tertiary);
+    }
+
+    .budget-info {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .card-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* CTA Button */
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: white;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      width: 100%;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(139, 69, 19, 0.25);
+    }
+
+    /* Footer */
+    .site-footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .footer-links a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-light);
+      text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .card-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .logo {
+        font-size: 2.8rem;
+      }
+
+      .tagline {
+        font-size: 0.75rem;
+        letter-spacing: 3px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card-content {
+        padding: 22px;
+      }
+
+      .card-title {
+        font-size: 1.6rem;
+      }
+
+      .site-header {
+        padding: 30px 20px;
+      }
+    }
+
+    /* Animation for card hover */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .magnolia-card {
-      max-width: 760px;
-      margin: 70px auto;
-      background-color: #fbfbfa;
-      border: 1px solid #e3e3e3;
-      font-family: 'Times New Roman', Georgia, serif;
-      text-align: center;
-      overflow: hidden;
+      animation: fadeInUp 0.6s ease-out;
     }
 
-    .magnolia-preview,
-    .magnolia-full {
-      padding: 48px 36px;
+    /* Loading state for images */
+    .card-image {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
     }
 
-    .magnolia-preview {
-      transition: opacity 0.35s ease, transform 0.35s ease;
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
     }
 
-    .magnolia-full {
-      max-height: 0;
-      opacity: 0;
-      transform: translateY(12px);
-      overflow: hidden;
-      transition:
-        max-height 0.7s ease,
-        opacity 0.45s ease,
-        transform 0.45s ease;
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-
-    .magnolia-card:hover .magnolia-preview {
-      opacity: 0;
-      transform: translateY(-6px);
-    }
-
-    .magnolia-card:hover .magnolia-full {
-      max-height: 1400px;
-      opacity: 1;
-      transform: translateY(0);
-      padding: 48px 36px;
-    }
-
-    /* IMAGE */
-    .magnolia-image {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-top: 1px solid #e3e3e3;
-      border-bottom: 1px solid #e3e3e3;
+    /* Focus states for accessibility */
+    .cta-button:focus,
+    .magnolia-card:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
     }
   </style>
 </head>
 
 <body>
+  <!-- Header -->
+  <header class="site-header">
+    <h1 class="logo">Magnolia Creations</h1>
+    <p class="tagline">Architectural Preset Builds</p>
+    <p class="header-subtitle">Premium, thoughtfully designed homes for immersive gameplay experience</p>
+  </header>
 
-  <!-- HEADER -->
-  <div style="
-    width: 100%;
-    padding: 70px 24px 50px 24px;
-    background-color: #ffffff;
-    text-align: center;
-    border-bottom: 1px solid #e5e5e5;
-    font-family: 'Times New Roman', Georgia, serif;
-  ">
-    <h1 style="
-      margin: 0;
-      font-size: 42px;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      color: #1f1f1f;
-    ">
-      Magnolia Creations
-    </h1>
+  <!-- Card Grid -->
+  <div class="card-container">
+    <!-- Magnolia Ridge Card -->
+    <article class="magnolia-card" tabindex="0" role="button" aria-label="View details for The Magnolia Ridge">
+      <div class="card-badge">Featured</div>
+      <img 
+        src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+        alt="Exterior view of The Magnolia Ridge two-story home with modern Texas-inspired architecture" 
+        class="card-image"
+        loading="lazy"
+      >
+      <div class="card-content">
+        <h2 class="card-title">The Magnolia Ridge</h2>
+        <p class="card-subtitle">Two-Story Texas-Inspired Home</p>
+        
+        <p class="card-description">
+          A thoughtfully planned suburban home featuring realistic proportions, 
+          an open-concept main floor, and subtle exterior articulation. 
+          Designed for efficient gameplay and believable residential flow.
+        </p>
 
-    <p style="
-      margin-top: 18px;
-      font-size: 13px;
-      letter-spacing: 3px;
-      color: #7a7a7a;
-      text-transform: uppercase;
-    ">
-      Architectural Preset Builds
-    </p>
-  </div>
+        <ul class="card-features">
+          <li>4 Bedrooms & 1.5 Bathrooms</li>
+          <li>One-Car Garage with Workshop Space</li>
+          <li>Open-Concept Living Area</li>
+          <li>Realistic Proportions & Flow</li>
+          <li>Detailed Interior Design Included</li>
+        </ul>
 
-  <!-- CARD -->
-  <div class="magnolia-card">
+        <div class="card-price">
+          <span class="price-amount">$6.00</span>
+          <span class="price-label">Digital Download</span>
+        </div>
+        <p class="budget-info">Required in-game budget: 50–58k Bloxburg Cash</p>
 
-    <!-- PREVIEW -->
-    <div class="magnolia-preview">
-      <h2 style="
-        margin: 0;
-        font-size: 30px;
-        font-weight: 400;
-        letter-spacing: 0.4px;
-        color: #1f1f1f;
-      ">
-        The Magnolia Ridge
-      </h2>
+        <div class="card-footer">
+          No Structural Changes · Layout Included · Support Documentation
+        </div>
 
-      <p style="
-        margin-top: 14px;
-        font-size: 12px;
-        letter-spacing: 2.5px;
-        color: #7a7a7a;
-        text-transform: uppercase;
-      ">
-        Two-Story Texas-Inspired Home
-      </p>
-    </div>
-
-    <!-- IMAGE -->
-    <img
-      src="magnolia-ridge.png"
-      alt="The Magnolia Ridge exterior preview"
-      class="magnolia-image"
-    >
-
-    <!-- FULL -->
-    <div class="magnolia-full">
-
-      <p style="
-        margin: 0 0 12px 0;
-        font-size: 11px;
-        letter-spacing: 3px;
-        color: #8a8a8a;
-        text-transform: uppercase;
-      ">
-        Preset Build
-      </p>
-
-      <h2 style="
-        margin: 0;
-        font-size: 30px;
-        font-weight: 400;
-        letter-spacing: 0.4px;
-        color: #1f1f1f;
-      ">
-        The Magnolia Ridge
-      </h2>
-
-      <p style="
-        margin-top: 12px;
-        font-size: 12px;
-        letter-spacing: 2.5px;
-        color: #7a7a7a;
-        text-transform: uppercase;
-      ">
-        Two-Story Texas-Inspired Home
-      </p>
-
-      <hr style="
-        margin: 30px auto;
-        width: 60px;
-        border: none;
-        border-top: 1px solid #dedede;
-      ">
-
-      <p style="
-        font-size: 14px;
-        line-height: 1.65;
-        color: #2f2f2f;
-        margin: 0 0 26px 0;
-      ">
-        A thoughtfully planned suburban home featuring realistic proportions,
-        an open-concept main floor, and subtle exterior articulation.
-        Designed for efficient gameplay and believable residential flow.
-      </p>
-
-      <div style="
-        font-size: 14px;
-        color: #2f2f2f;
-        line-height: 1.9;
-        margin-bottom: 28px;
-      ">
-        4 Bedrooms • 1.5 Bathrooms<br>
-        One-Car Garage<br>
-        Approx. Footprint: 14 × 10
+        <button class="cta-button" aria-label="Purchase The Magnolia Ridge for $6">
+          Purchase Now
+        </button>
       </div>
+    </article>
 
-      <hr style="
-        margin: 28px auto;
-        width: 60px;
-        border: none;
-        border-top: 1px solid #dedede;
-      ">
+    <!-- Additional Card Example -->
+    <article class="magnolia-card" tabindex="0" role="button" aria-label="View details for The Willow Creek">
+      <div class="card-badge">New</div>
+      <img 
+        src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+        alt="Modern single-story Willow Creek home with garden" 
+        class="card-image"
+        loading="lazy"
+      >
+      <div class="card-content">
+        <h2 class="card-title">The Willow Creek</h2>
+        <p class="card-subtitle">Single-Story Modern Cottage</p>
+        
+        <p class="card-description">
+          Compact yet spacious single-story design perfect for starter homes. 
+          Features energy-efficient layout and integrated outdoor living spaces.
+        </p>
 
-      <p style="font-size: 15px; margin: 0; color: #1f1f1f;">
-        <strong>$6</strong>
-      </p>
+        <ul class="card-features">
+          <li>3 Bedrooms & 2 Bathrooms</li>
+          <li>Integrated Garden Space</li>
+          <li>Open Kitchen & Living Area</li>
+          <li>Energy-Efficient Design</li>
+          <li>Smart Storage Solutions</li>
+        </ul>
 
-      <p style="margin-top: 6px; font-size: 13px; color: #6f6f6f;">
-        Required budget: ~50–58k Bloxburg cash
-      </p>
+        <div class="card-price">
+          <span class="price-amount">$4.50</span>
+          <span class="price-label">Digital Download</span>
+        </div>
+        <p class="budget-info">Required in-game budget: 35–42k Bloxburg Cash</p>
 
-      <p style="
-        margin-top: 26px;
-        font-size: 11px;
-        letter-spacing: 2px;
-        color: #8a8a8a;
-        text-transform: uppercase;
-      ">
-        No Structural Changes · Layout Included
-      </p>
+        <div class="card-footer">
+          Starter Friendly · Garden Layout · Energy Efficient
+        </div>
 
-    </div>
+        <button class="cta-button" aria-label="Purchase The Willow Creek for $4.50">
+          Purchase Now
+        </button>
+      </div>
+    </article>
   </div>
 
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2024 Magnolia Creations. All designs are digitally delivered.</p>
+    <p>Compatible with Bloxburg and similar building games.</p>
+    <div class="footer-links">
+      <a href="#">Terms of Service</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Support</a>
+      <a href="#">Browse All Builds</a>
+    </div>
+  </footer>
+
+  <script>
+    // Enhance card interactivity
+    document.querySelectorAll('.magnolia-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        if (!e.target.classList.contains('cta-button')) {
+          this.classList.toggle('active');
+          // In a real implementation, this would show more details or navigate
+          console.log('Selected:', this.querySelector('.card-title').textContent);
+        }
+      });
+
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
+        }
+      });
+    });
+
+    // Add smooth scroll behavior
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Image loading handling
+    document.querySelectorAll('.card-image').forEach(img => {
+      img.addEventListener('load', function() {
+        this.style.background = 'none';
+      });
+    });
+  </script>
 </body>
 </html>
