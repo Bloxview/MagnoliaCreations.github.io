@@ -3,217 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <title>Magnolia Creations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    body {
-      margin: 0;
-      background-color: #f6f5f2;
-      color: #2f2f2f;
-      font-family: 'Times New Roman', Georgia, serif;
-    }
-
-    /* HEADER */
-    .site-header {
-      background-color: #fdfcf9;
-      border-bottom: 1px solid #e5e5e5;
-      padding: 50px 24px 44px;
-      text-align: center;
-      position: relative;
-    }
-
-    .logo {
-      position: absolute;
-      left: 32px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 68px; /* slightly larger */
-      height: auto;
-      opacity: 0.85;
-    }
-
-    .site-header h1 {
-      margin: 0;
-      font-size: 42px;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      color: #2a2a2a;
-    }
-
-    .site-header p {
-      margin-top: 18px;
-      font-size: 13px;
-      letter-spacing: 3px;
-      color: #7a7a7a;
-      text-transform: uppercase;
-    }
-
-    /* LISTING CARD */
-    .listing-card {
-      max-width: 760px;
-      margin: 80px auto;
-      background-color: #fbfbfa;
-      border: 1px solid #dedede;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .listing-image {
-      width: 100%;
-      display: block;
-    }
-
-    .listing-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(248,247,243,0.94);
-      opacity: 0;
-      transition: opacity 0.55s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 52px;
-    }
-
-    .listing-card:hover .listing-overlay,
-    .listing-card:focus-within .listing-overlay {
-      opacity: 1;
-    }
-
-    .listing-overlay p.meta {
-      font-size: 11px;
-      letter-spacing: 3px;
-      color: #8a8a8a;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .listing-overlay h2 {
-      margin: 0;
-      font-size: 30px;
-      font-weight: 400;
-      letter-spacing: 0.4px;
-      color: #1f1f1f;
-    }
-
-    .listing-overlay p.subtitle {
-      margin-top: 12px;
-      font-size: 12px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: #6f6f6f;
-    }
-
-    .divider {
-      width: 60px;
-      height: 1px;
-      background-color: #dedede;
-      margin: 28px auto;
-    }
-
-    .listing-details {
-      font-size: 14px;
-      line-height: 1.8;
-      margin-bottom: 22px;
-    }
-
-    .listing-price {
-      font-size: 15px;
-      color: #1f1f1f;
-      margin-bottom: 6px;
-    }
-
-    .listing-budget {
-      font-size: 13px;
-      color: #6f6f6f;
-    }
-
-    .listing-note {
-      margin-top: 22px;
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: #8a8a8a;
-      text-transform: uppercase;
-    }
-
-    /* FOOTER CONTACT */
-    .contact {
-      text-align: center;
-      margin: 90px 0 60px;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #7a7a7a;
-    }
-
-    .contact a {
-      color: #2f2f2f;
-      text-decoration: none;
-      border-bottom: 1px solid #cfcfcf;
-      padding-bottom: 2px;
-    }
-
-    .contact a:hover {
-      opacity: 0.7;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
   <!-- HEADER -->
   <header class="site-header">
-    <img src="Logo.svg" alt="Magnolia Creations logo" class="logo">
+    <img src="Logo.svg" alt="Magnolia Creations logo" class="site-logo">
 
     <h1>Magnolia Creations</h1>
     <p>Architectural Preset Builds</p>
   </header>
 
-  <!-- LISTING -->
-  <div class="listing-card" tabindex="0">
-    <img
-      src="magnolia-ridge.png"
-      alt="The Magnolia Ridge exterior"
-      class="listing-image"
-    >
-
-    <div class="listing-overlay">
-      <div>
-        <p class="meta">Preset Build</p>
-
-        <h2>The Magnolia Ridge</h2>
-
-        <p class="subtitle">
-          Two-Story Texas-Inspired Home
-        </p>
-
-        <div class="divider"></div>
-
-        <div class="listing-details">
-          4 Bedrooms • 1.5 Bathrooms<br>
-          One-Car Garage<br>
-          Approx. Footprint: 14 × 10
-        </div>
-
-        <div class="divider"></div>
-
-        <p class="listing-price"><strong>$6</strong></p>
-        <p class="listing-budget">~50–58k Bloxburg Cash</p>
-
-        <p class="listing-note">
-          Layout Included · No Structural Changes
-        </p>
-      </div>
-    </div>
-  </div>
+  <!-- GRID -->
+  <main class="grid-container" id="cardGrid">
+    <!-- Cards are injected here by JS -->
+  </main>
 
   <!-- CONTACT -->
-  <div class="contact">
-    Contact & Orders via
+  <footer class="contact-footer">
+    <p>To purchase or request a build</p>
     <a href="https://www.tiktok.com/@domafosoddn?_r=1&_t=ZP-93Q8xEWn4VK" target="_blank">
-      TikTok
+      Contact us on TikTok
     </a>
-  </div>
+  </footer>
 
+  <!-- SCRIPTS -->
+  <script src="cards.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
