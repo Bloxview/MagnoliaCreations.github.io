@@ -5,19 +5,31 @@
   <title>Magnolia Creations</title>
 
   <style>
+    :root {
+      --paper: #f7f6f2;
+      --card: #fbfbfa;
+      --text-main: #2a2a2a;
+      --text-muted: #6f6f6f;
+      --border: #dedede;
+    }
+
     body {
       margin: 0;
-      background-color: #f4f4f4;
+      background-color: var(--paper);
+      color: var(--text-main);
       font-family: 'Times New Roman', Georgia, serif;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* HEADER */
     .site-header {
-      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
       padding: 70px 24px 50px;
-      background-color: #ffffff;
-      text-align: center;
-      border-bottom: 1px solid #e5e5e5;
+      background-color: var(--card);
+      border-bottom: 1px solid var(--border);
     }
 
     .site-header h1 {
@@ -25,30 +37,48 @@
       font-size: 42px;
       font-weight: 400;
       letter-spacing: 0.5px;
-      color: #1f1f1f;
     }
 
     .site-header p {
       margin-top: 18px;
       font-size: 13px;
       letter-spacing: 3px;
-      color: #7a7a7a;
+      color: var(--text-muted);
       text-transform: uppercase;
+      text-align: center;
     }
 
-    /* LISTINGS WRAPPER */
-    #listings {
-      padding: 70px 20px;
+    .header-center {
+      text-align: center;
+    }
+
+    /* LOGO */
+    .site-logo {
+      position: absolute;
+      left: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: auto;
+      opacity: 0.9;
+      fill: currentColor;
     }
 
     /* CARD */
     .magnolia-card {
       max-width: 760px;
-      margin: 0 auto 80px;
-      background-color: #fbfbfa;
-      border: 1px solid #e3e3e3;
+      margin: 70px auto;
+      background-color: var(--card);
+      border: 1px solid var(--border);
       text-align: center;
       overflow: hidden;
+      transition: box-shadow 0.4s ease, transform 0.4s ease;
+    }
+
+    .magnolia-card:hover,
+    .magnolia-card:focus-within {
+      box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
     }
 
     .magnolia-preview,
@@ -57,7 +87,7 @@
     }
 
     .magnolia-preview {
-      transition: opacity 0.35s ease, transform 0.35s ease;
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
     .magnolia-full {
@@ -65,75 +95,66 @@
       opacity: 0;
       transform: translateY(12px);
       overflow: hidden;
-      transition:
-        max-height 0.7s ease,
-        opacity 0.45s ease,
-        transform 0.45s ease;
       padding-top: 0;
       padding-bottom: 0;
+      transition:
+        max-height 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
+        opacity 0.5s ease,
+        transform 0.5s ease;
     }
 
-    .magnolia-card:hover .magnolia-preview {
+    .magnolia-card:hover .magnolia-preview,
+    .magnolia-card:focus-within .magnolia-preview {
       opacity: 0;
       transform: translateY(-6px);
     }
 
-    .magnolia-card:hover .magnolia-full {
-      max-height: 1600px;
+    .magnolia-card:hover .magnolia-full,
+    .magnolia-card:focus-within .magnolia-full {
+      max-height: 1400px;
       opacity: 1;
       transform: translateY(0);
       padding: 48px 36px;
     }
 
-    /* IMAGES */
-    .magnolia-image-wrapper {
-      position: relative;
-      border-top: 1px solid #e3e3e3;
-    }
-
     .magnolia-image {
       width: 100%;
       display: block;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: transform 0.6s ease;
     }
 
-    .image-label {
-      position: absolute;
-      bottom: 14px;
-      left: 14px;
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 6px 10px;
-      font-size: 11px;
+    .magnolia-card:hover .magnolia-image {
+      transform: scale(1.015);
+    }
+
+    /* CONTACT */
+    .contact-footer {
+      max-width: 760px;
+      margin: 60px auto 90px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .contact-footer p {
+      font-size: 13px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: #1f1f1f;
+      margin-bottom: 12px;
     }
 
-    /* FOOTER */
-    .site-footer {
-      background-color: #ffffff;
-      border-top: 1px solid #e5e5e5;
-      padding: 60px 24px;
-      text-align: center;
-    }
-
-    .site-footer p {
-      font-size: 13px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: #7a7a7a;
-      margin-bottom: 14px;
-    }
-
-    .site-footer a {
+    .contact-footer a {
       font-size: 15px;
-      color: #1f1f1f;
+      color: var(--text-main);
       text-decoration: none;
-      border-bottom: 1px solid #1f1f1f;
+      border-bottom: 1px solid var(--border);
       padding-bottom: 2px;
+      transition: border-color 0.3s ease;
     }
 
-    .site-footer a:hover {
-      opacity: 0.7;
+    .contact-footer a:hover {
+      border-color: var(--text-main);
     }
   </style>
 </head>
@@ -141,28 +162,80 @@
 <body>
 
   <!-- HEADER -->
-  <div class="site-header">
-    <h1>Magnolia Creations</h1>
-    <p>Architectural Preset Builds</p>
+  <header class="site-header">
+    <img src="logo.svg" alt="Magnolia Creations logo" class="site-logo">
+
+    <div class="header-center">
+      <h1>Magnolia Creations</h1>
+      <p>Architectural Preset Builds</p>
+    </div>
+  </header>
+
+  <!-- CARD -->
+  <div class="magnolia-card" tabindex="0">
+
+    <div class="magnolia-preview">
+      <h2 style="margin:0; font-size:30px; font-weight:400;">
+        The Magnolia Ridge
+      </h2>
+      <p style="margin-top:14px; font-size:12px; letter-spacing:2.5px; color:var(--text-muted); text-transform:uppercase;">
+        Two-Story Texas-Inspired Home
+      </p>
+    </div>
+
+    <img src="magnolia-ridge.png" alt="The Magnolia Ridge exterior" class="magnolia-image">
+
+    <div class="magnolia-full">
+
+      <p style="font-size:11px; letter-spacing:3px; color:#8a8a8a; text-transform:uppercase;">
+        Preset Build
+      </p>
+
+      <h2 style="margin:0; font-size:30px; font-weight:400;">
+        The Magnolia Ridge
+      </h2>
+
+      <p style="margin-top:12px; font-size:12px; letter-spacing:2.5px; color:var(--text-muted); text-transform:uppercase;">
+        Two-Story Texas-Inspired Home
+      </p>
+
+      <hr style="margin:30px auto; width:60px; border:none; border-top:1px solid var(--border);">
+
+      <p style="font-size:14px; line-height:1.65;">
+        A thoughtfully planned suburban home featuring realistic proportions,
+        an open-concept main floor, and subtle exterior articulation.
+      </p>
+
+      <div style="font-size:14px; line-height:1.9; margin:26px 0;">
+        4 Bedrooms • 1.5 Bathrooms<br>
+        One-Car Garage<br>
+        Approx. Footprint: 14 × 10
+      </div>
+
+      <hr style="margin:28px auto; width:60px; border:none; border-top:1px solid var(--border);">
+
+      <p style="font-size:15px; margin:0;">
+        <strong>$6</strong>
+      </p>
+
+      <p style="margin-top:6px; font-size:13px; color:var(--text-muted);">
+        Required budget: ~50–58k Bloxburg cash
+      </p>
+
+      <p style="margin-top:26px; font-size:11px; letter-spacing:2px; color:#8a8a8a; text-transform:uppercase;">
+        No Structural Changes · Layout Included
+      </p>
+
+    </div>
   </div>
 
-  <!-- LISTINGS -->
-  <div id="listings"></div>
-
-  <!-- FOOTER -->
-  <div class="site-footer">
-    <p>Commission & Build Inquiries</p>
-    <a
-      href="https://www.tiktok.com/@domafosoddn?_r=1&_t=ZP-93Q8xEWn4VK"
-      target="_blank"
-    >
-      Contact via TikTok
+  <!-- CONTACT -->
+  <div class="contact-footer">
+    <p>To purchase or request a build</p>
+    <a href="https://www.tiktok.com/@domafosoddn?_r=1&_t=ZP-93Q8xEWn4VK" target="_blank">
+      Contact us on TikTok
     </a>
   </div>
-
-  <!-- SCRIPTS -->
-  <script src="houses.js"></script>
-  <script src="render.js"></script>
 
 </body>
 </html>
