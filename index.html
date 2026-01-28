@@ -24,7 +24,7 @@ body {
 .header {
   background: #ffffff;
   border-bottom: 1px solid var(--rule);
-  padding: 48px 24px 42px;
+  padding: 56px 24px 48px;
   text-align: center;
   position: relative;
 }
@@ -41,7 +41,6 @@ body {
   width: 100%;
   height: auto;
   display: block;
-  fill: var(--ink);
 }
 
 .header h1 {
@@ -59,123 +58,64 @@ body {
   text-transform: uppercase;
 }
 
-/* ---------- LAYOUT ---------- */
+/* ---------- CONTENT ---------- */
 .container {
-  max-width: 1100px;
-  margin: 48px auto;
+  max-width: 820px;
+  margin: 64px auto;
   padding: 0 24px;
 }
 
-/* ---------- CARD ---------- */
-.magnolia-card {
-  background: #fbfbfa;
-  border: 1px solid var(--rule);
-  margin-bottom: 42px;
-  overflow: hidden;
+.section {
+  margin-bottom: 64px;
 }
 
-/* PREVIEW */
-.magnolia-preview {
-  padding: 28px 32px 22px;
-  transition: opacity 0.35s ease, transform 0.35s ease;
-}
-
-.magnolia-preview h2 {
-  margin: 0;
-  font-size: 26px;
-  font-weight: 400;
-}
-
-.magnolia-preview p {
-  margin-top: 8px;
+.section-title {
   font-size: 11px;
-  letter-spacing: 2.5px;
+  letter-spacing: 3px;
   color: var(--muted);
   text-transform: uppercase;
+  margin-bottom: 14px;
 }
 
-/* IMAGE */
-.magnolia-image {
-  width: 100%;
-  display: block;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-}
-
-/* FULL */
-.magnolia-full {
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(10px);
-  overflow: hidden;
-  transition: all 0.5s ease;
-  padding: 0 32px;
-}
-
-.magnolia-card:hover .magnolia-preview {
-  opacity: 0;
-  transform: translateY(-6px);
-}
-
-.magnolia-card:hover .magnolia-full {
-  max-height: 1200px;
-  opacity: 1;
-  transform: translateY(0);
-  padding: 36px 32px 40px;
-}
-
-.magnolia-full h2 {
-  margin: 6px 0 10px;
-  font-size: 28px;
+.section h2 {
+  font-size: 30px;
   font-weight: 400;
+  margin: 0 0 18px 0;
 }
 
-.magnolia-full .tag {
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: #8a8a8a;
-  text-transform: uppercase;
-}
-
-.magnolia-full .desc {
-  font-size: 14px;
-  line-height: 1.65;
-  margin: 18px 0 22px;
-}
-
-.magnolia-full .meta {
-  font-size: 14px;
-  line-height: 1.9;
+.section p {
+  font-size: 15px;
+  line-height: 1.75;
+  margin: 0 0 18px 0;
 }
 
 .rule {
   width: 60px;
   border-top: 1px solid var(--rule);
-  margin: 24px auto;
+  margin: 42px 0;
 }
 
-/* PRICE */
-.price {
-  font-size: 16px;
-  margin: 0;
+/* ---------- LIST TEXT ---------- */
+.list {
+  font-size: 14px;
+  line-height: 1.9;
 }
 
-.budget {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 6px;
+.list strong {
+  font-weight: 400;
 }
 
-/* FOOTER CONTACT */
-.contact {
+/* ---------- FOOTER ---------- */
+.footer {
   text-align: center;
-  padding: 42px 24px 60px;
+  padding: 56px 24px 64px;
+  border-top: 1px solid var(--rule);
   font-size: 12px;
   letter-spacing: 2px;
   color: var(--muted);
 }
 
-.contact a {
+.footer a {
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--ink);
@@ -191,17 +131,11 @@ body {
   }
 
   .header {
-    padding-top: 36px;
+    padding-top: 40px;
   }
 
-  .magnolia-preview,
-  .magnolia-full {
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-
-  .magnolia-preview h2 {
-    font-size: 24px;
+  .section h2 {
+    font-size: 26px;
   }
 }
 </style>
@@ -214,52 +148,70 @@ body {
   <div class="header-logo">
     <img src="Logo.svg" alt="Magnolia Creations Logo">
   </div>
-
   <h1>Magnolia Creations</h1>
   <p>Architectural Preset Builds</p>
 </div>
 
 <div class="container">
 
-<!-- CARD -->
-<div class="magnolia-card">
+<!-- ABOUT -->
+<div class="section">
+  <div class="section-title">About Magnolia</div>
+  <h2>Designed once. Built with intention.</h2>
+  <p>
+    Magnolia Creations is a preset architectural studio specializing in
+    thoughtfully designed Bloxburg homes. Every build is designed by me,
+    refined through personal iteration, and offered as a finished layout
+    rather than a commission.
+  </p>
+  <p>
+    Instead of custom requests, Magnolia focuses on a curated collection
+    of pre-built designs that can be placed directly onto your lot — clean,
+    efficient, and architecturally intentional.
+  </p>
+</div>
 
-  <div class="magnolia-preview">
-    <h2>The Magnolia Ridge</h2>
-    <p>Two-Story Texas-Inspired Home</p>
-  </div>
+<div class="rule"></div>
 
-  <img src="magnolia-ridge.png" alt="Magnolia Ridge exterior" class="magnolia-image">
+<!-- HOW IT WORKS -->
+<div class="section">
+  <div class="section-title">How It Works</div>
+  <p class="list">
+    • Choose a preset design from our listings<br>
+    • Purchase the layout for a small fixed fee<br>
+    • The build is placed directly on your lot using your in-game budget<br>
+    • No commissions, revisions, or structural changes
+  </p>
+  <p>
+    This approach allows for consistent quality, faster turnaround,
+    and designs that are fully resolved before they ever reach your plot.
+  </p>
+</div>
 
-  <div class="magnolia-full">
-    <div class="tag">Preset Build</div>
-    <h2>The Magnolia Ridge</h2>
+<div class="rule"></div>
 
-    <div class="rule"></div>
+<!-- PAYMENTS & POLICIES -->
+<div class="section">
+  <div class="section-title">Payments & Policies</div>
+  <p class="list">
+    <strong>Accepted Payments</strong><br>
+    • Cash App<br>
+    • Select digital gift cards
+  </p>
 
-    <p class="desc">
-      A thoughtfully planned suburban home featuring realistic proportions,
-      clean exterior articulation, and efficient residential flow.
-    </p>
-
-    <div class="meta">
-      4 Bedrooms • 1.5 Bathrooms<br>
-      One-Car Garage<br>
-      Approx. Footprint: 14 × 10
-    </div>
-
-    <div class="rule"></div>
-
-    <p class="price"><strong>$6</strong></p>
-    <p class="budget">Required budget: ~50–58k Bloxburg cash</p>
-  </div>
-
+  <p class="list" style="margin-top: 18px;">
+    <strong>Policies</strong><br>
+    • All designs are preset and sold as-is<br>
+    • Exterior colors may be adjusted upon request<br>
+    • Interiors are not included unless stated<br>
+    • Layout resale or redistribution is not permitted
+  </p>
 </div>
 
 </div>
 
-<!-- CONTACT -->
-<div class="contact">
+<!-- FOOTER -->
+<div class="footer">
   Contact & orders via TikTok<br>
   <a href="https://www.tiktok.com/@domafosoddn?_r=1&_t=ZP-93Q8xEWn4VK" target="_blank">
     @Magnolia Creations
