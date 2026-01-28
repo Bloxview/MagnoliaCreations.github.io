@@ -1,264 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Magnolia Creations</title>
+  <meta charset="UTF-8">
+  <title>Magnolia Creations</title>
 
-<style>
-:root {
-  --paper: #f7f6f2;
-  --ink: #2b2b2b;
-  --muted: #7a7a7a;
-  --border: #dedede;
-}
+  <style>
+    body {
+      margin: 0;
+      background-color: #f6f5f2;
+      color: #2f2f2f;
+      font-family: 'Times New Roman', Georgia, serif;
+    }
 
-* {
-  box-sizing: border-box;
-}
+    /* HEADER */
+    .site-header {
+      background-color: #fdfcf9;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 50px 24px 44px;
+      text-align: center;
+      position: relative;
+    }
 
-body {
-  margin: 0;
-  background-color: var(--paper);
-  color: var(--ink);
-  font-family: 'Times New Roman', Georgia, serif;
-}
+    .logo {
+      position: absolute;
+      left: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 68px; /* slightly larger */
+      height: auto;
+      opacity: 0.85;
+    }
 
-/* HEADER */
-.header {
-  background: #ffffff;
-  border-bottom: 1px solid var(--border);
-  padding: 60px 24px 48px;
-  text-align: center;
-}
+    .site-header h1 {
+      margin: 0;
+      font-size: 42px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      color: #2a2a2a;
+    }
 
-.header-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  position: relative;
-}
+    .site-header p {
+      margin-top: 18px;
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: #7a7a7a;
+      text-transform: uppercase;
+    }
 
-.logo {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 64px;
-  height: auto;
-  fill: var(--ink);
-}
+    /* LISTING CARD */
+    .listing-card {
+      max-width: 760px;
+      margin: 80px auto;
+      background-color: #fbfbfa;
+      border: 1px solid #dedede;
+      overflow: hidden;
+      position: relative;
+    }
 
-.header h1 {
-  margin: 0;
-  font-size: 42px;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-}
+    .listing-image {
+      width: 100%;
+      display: block;
+    }
 
-.header p {
-  margin-top: 18px;
-  font-size: 13px;
-  letter-spacing: 3px;
-  color: var(--muted);
-  text-transform: uppercase;
-}
+    .listing-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(248,247,243,0.94);
+      opacity: 0;
+      transition: opacity 0.55s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 52px;
+    }
 
-/* LISTING CARD */
-.listing {
-  max-width: 760px;
-  margin: 80px auto;
-  background: #fbfbfa;
-  border: 1px solid var(--border);
-  overflow: hidden;
-  position: relative;
-}
+    .listing-card:hover .listing-overlay,
+    .listing-card:focus-within .listing-overlay {
+      opacity: 1;
+    }
 
-.listing img {
-  width: 100%;
-  display: block;
-}
+    .listing-overlay p.meta {
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: #8a8a8a;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
 
-/* CLOSED LABEL */
-.listing-label {
-  padding: 40px 36px;
-  text-align: center;
-}
+    .listing-overlay h2 {
+      margin: 0;
+      font-size: 30px;
+      font-weight: 400;
+      letter-spacing: 0.4px;
+      color: #1f1f1f;
+    }
 
-.listing-label h2 {
-  margin: 0;
-  font-size: 30px;
-  font-weight: 400;
-}
+    .listing-overlay p.subtitle {
+      margin-top: 12px;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #6f6f6f;
+    }
 
-.listing-label p {
-  margin-top: 12px;
-  font-size: 12px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--muted);
-}
+    .divider {
+      width: 60px;
+      height: 1px;
+      background-color: #dedede;
+      margin: 28px auto;
+    }
 
-/* OVERLAY INFO */
-.listing-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(247,246,242,0.95);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 48px;
-}
+    .listing-details {
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 22px;
+    }
 
-.listing:hover .listing-overlay,
-.listing:focus-within .listing-overlay {
-  opacity: 1;
-}
+    .listing-price {
+      font-size: 15px;
+      color: #1f1f1f;
+      margin-bottom: 6px;
+    }
 
-.overlay-inner {
-  max-width: 420px;
-}
+    .listing-budget {
+      font-size: 13px;
+      color: #6f6f6f;
+    }
 
-.overlay-inner .tag {
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #8a8a8a;
-  margin-bottom: 12px;
-}
+    .listing-note {
+      margin-top: 22px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: #8a8a8a;
+      text-transform: uppercase;
+    }
 
-.overlay-inner h2 {
-  margin: 0;
-  font-size: 30px;
-  font-weight: 400;
-}
+    /* FOOTER CONTACT */
+    .contact {
+      text-align: center;
+      margin: 90px 0 60px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7a7a7a;
+    }
 
-.overlay-inner .subtitle {
-  margin-top: 12px;
-  font-size: 12px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--muted);
-}
+    .contact a {
+      color: #2f2f2f;
+      text-decoration: none;
+      border-bottom: 1px solid #cfcfcf;
+      padding-bottom: 2px;
+    }
 
-.overlay-inner hr {
-  width: 60px;
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 28px auto;
-}
-
-.overlay-inner .desc {
-  font-size: 14px;
-  line-height: 1.65;
-  margin-bottom: 24px;
-}
-
-.overlay-inner .meta {
-  font-size: 14px;
-  line-height: 1.9;
-  margin-bottom: 24px;
-}
-
-.overlay-inner .price {
-  font-size: 15px;
-}
-
-.overlay-inner .note {
-  margin-top: 18px;
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #8a8a8a;
-}
-
-/* FOOTER CONTACT */
-.footer {
-  border-top: 1px solid var(--border);
-  padding: 48px 24px 60px;
-  text-align: center;
-  background: #ffffff;
-}
-
-.footer p {
-  font-size: 13px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 12px;
-}
-
-.footer a {
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 2px;
-}
-</style>
+    .contact a:hover {
+      opacity: 0.7;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="header">
-  <div class="header-inner">
+  <!-- HEADER -->
+  <header class="site-header">
     <img src="Logo.svg" alt="Magnolia Creations logo" class="logo">
 
     <h1>Magnolia Creations</h1>
     <p>Architectural Preset Builds</p>
-  </div>
-</header>
+  </header>
 
-<!-- LISTING -->
-<section class="listing" tabindex="0">
+  <!-- LISTING -->
+  <div class="listing-card" tabindex="0">
+    <img
+      src="magnolia-ridge.png"
+      alt="The Magnolia Ridge exterior"
+      class="listing-image"
+    >
 
-  <div class="listing-label">
-    <h2>The Magnolia Ridge</h2>
-    <p>Two-Story Texas-Inspired Home</p>
-  </div>
+    <div class="listing-overlay">
+      <div>
+        <p class="meta">Preset Build</p>
 
-  <img src="magnolia-ridge.png" alt="The Magnolia Ridge exterior">
+        <h2>The Magnolia Ridge</h2>
 
-  <div class="listing-overlay">
-    <div class="overlay-inner">
-      <div class="tag">Preset Build</div>
+        <p class="subtitle">
+          Two-Story Texas-Inspired Home
+        </p>
 
-      <h2>The Magnolia Ridge</h2>
-      <div class="subtitle">Two-Story Texas-Inspired Home</div>
+        <div class="divider"></div>
 
-      <hr>
+        <div class="listing-details">
+          4 Bedrooms • 1.5 Bathrooms<br>
+          One-Car Garage<br>
+          Approx. Footprint: 14 × 10
+        </div>
 
-      <div class="desc">
-        A thoughtfully planned suburban home focused on realistic scale,
-        clean exterior articulation, and believable residential flow.
-      </div>
+        <div class="divider"></div>
 
-      <div class="meta">
-        4 Bedrooms • 1.5 Bathrooms<br>
-        One-Car Garage<br>
-        Approx. Footprint: 14 × 10
-      </div>
+        <p class="listing-price"><strong>$6</strong></p>
+        <p class="listing-budget">~50–58k Bloxburg Cash</p>
 
-      <div class="price">
-        <strong>$6</strong> · ~50–58k Bloxburg Cash
-      </div>
-
-      <div class="note">
-        Layout Included · No Structural Changes
+        <p class="listing-note">
+          Layout Included · No Structural Changes
+        </p>
       </div>
     </div>
   </div>
 
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <p>Contact & Ordering</p>
-  <a href="https://www.tiktok.com/@domafosoddn?_r=1&_t=ZP-93Q8xEWn4VK" target="_blank">
-    TikTok @domafosoddn
-  </a>
-</footer>
+  <!-- CONTACT -->
+  <div class="contact">
+    Contact & Orders via
+    <a href="https://www.tiktok.com/@domafosoddn?_r=1&_t=ZP-93Q8xEWn4VK" target="_blank">
+      TikTok
+    </a>
+  </div>
 
 </body>
 </html>
