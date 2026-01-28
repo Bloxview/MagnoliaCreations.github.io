@@ -1,59 +1,166 @@
-const grid = document.getElementById("cardGrid");
+:root {
+  --paper: #f6f5f1;
+  --card: #ffffff;
+  --text-main: #1f1f1f;
+  --text-muted: #777777;
+  --border: rgba(0,0,0,0.08);
+}
 
-magnoliaCards.forEach(card => {
-  const cardElement = document.createElement("div");
-  cardElement.className = "magnolia-card";
+/* BASE */
+body {
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--text-main);
+  font-family: 'Times New Roman', Georgia, serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
 
-  cardElement.innerHTML = `
-    <div class="card-preview">
-      <h2 style="margin:0; font-size:28px; font-weight:400;">
-        ${card.title}
-      </h2>
-      <p style="margin-top:14px; font-size:12px; letter-spacing:2.5px; color:#6f6f6f; text-transform:uppercase;">
-        ${card.subtitle}
-      </p>
-    </div>
+/* HEADER */
+.site-header {
+  padding: 96px 24px 72px;
+  background-color: var(--paper);
+  text-align: center;
+}
 
-    <img src="${card.image}" alt="${card.title}" class="card-image">
+.site-logo {
+  width: 56px;
+  margin-bottom: 24px;
+}
 
-    <div class="card-full">
-      <p style="font-size:11px; letter-spacing:3px; color:#8a8a8a; text-transform:uppercase;">
-        Preset Build
-      </p>
+.site-header h1 {
+  margin: 0;
+  font-size: 44px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+}
 
-      <h2 style="margin:0; font-size:28px; font-weight:400;">
-        ${card.title}
-      </h2>
+.site-header p {
+  margin-top: 18px;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
 
-      <p style="margin-top:12px; font-size:12px; letter-spacing:2.5px; color:#6f6f6f; text-transform:uppercase;">
-        ${card.subtitle}
-      </p>
+/* GRID */
+.grid-container {
+  max-width: 1100px;
+  margin: 96px auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 72px;
+}
 
-      <hr style="margin:26px auto; width:60px; border:none; border-top:1px solid #dedede;">
+/* CARD */
+.magnolia-card {
+  background-color: var(--card);
+  text-align: center;
+}
 
-      <p style="font-size:14px; line-height:1.6;">
-        ${card.description}
-      </p>
+/* No heavy borders — editorial uses separation, not boxes */
+.card-preview,
+.card-full {
+  padding: 0;
+}
 
-      <div style="font-size:14px; line-height:1.9; margin:24px 0;">
-        ${card.bedrooms} Bedrooms • ${card.bathrooms} Bathrooms<br>
-        ${card.garage}<br>
-        Approx. Footprint: ${card.footprint}
-      </div>
+.card-full {
+  display: none;
+}
 
-      <p style="font-size:15px; margin:0;">
-        <strong>${card.price}</strong>
-      </p>
+/* Image */
+.card-image {
+  width: 100%;
+  display: block;
+  margin-bottom: 28px;
+}
 
-      <p style="margin-top:6px; font-size:13px; color:#6f6f6f;">
-        Required budget: ${card.budget}
-      </p>
+/* Typography inside cards */
+.magnolia-card h2 {
+  font-size: 26px;
+  font-weight: 400;
+  margin: 0 0 14px;
+}
 
-      <p style="margin-top:24px; font-size:11px; letter-spacing:2px; color:#8a8a8a; text-transform:uppercase;">
-        ${card.notes}
-      </p>
-    </div>
-  `;
+.magnolia-card p {
+  font-size: 16px;
+  color: var(--text-muted);
+  margin: 0 auto;
+  max-width: 520px;
+}
 
-  grid.appendChild(cardElement);
-});
+/* Desktop interaction — subtle, slow */
+@media (hover: hover) {
+  .magnolia-card {
+    transition: transform 0.4s ease;
+  }
+
+  .magnolia-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .magnolia-card:hover .card-preview {
+    display: none;
+  }
+
+  .magnolia-card:hover .card-full {
+    display: block;
+  }
+}
+
+/* FOOTER */
+.contact-footer {
+  text-align: center;
+  margin: 120px 0 96px;
+  padding: 0 24px;
+}
+
+.contact-footer p {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.contact-footer a {
+  font-size: 16px;
+  color: var(--text-main);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2px;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .site-header {
+    padding: 72px 20px 56px;
+  }
+
+  .site-header h1 {
+    font-size: 34px;
+  }
+
+  .grid-container {
+    margin: 64px auto;
+    gap: 48px;
+  }
+
+  .magnolia-card h2 {
+    font-size: 22px;
+  }
+
+  .magnolia-card p {
+    font-size: 15px;
+  }
+
+  /* Editorial rule: no hidden content on mobile */
+  .card-preview {
+    display: none;
+  }
+
+  .card-full {
+    display: block;
+  }
+}
