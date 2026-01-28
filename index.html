@@ -32,6 +32,10 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .header-center {
+      text-align: center;
+    }
+
     .site-header h1 {
       margin: 0;
       font-size: 42px;
@@ -45,11 +49,6 @@
       letter-spacing: 3px;
       color: var(--text-muted);
       text-transform: uppercase;
-      text-align: center;
-    }
-
-    .header-center {
-      text-align: center;
     }
 
     /* LOGO */
@@ -58,10 +57,10 @@
       left: 28px;
       top: 50%;
       transform: translateY(-50%);
-      width: 38px;
+      width: 40px;
       height: auto;
-      opacity: 0.9;
-      fill: currentColor;
+      opacity: 0.95;
+      filter: brightness(0) saturate(100%);
     }
 
     /* CARD */
@@ -163,7 +162,8 @@
 
   <!-- HEADER -->
   <header class="site-header">
-    <img src="logo.svg" alt="Magnolia Creations logo" class="site-logo">
+    <!-- IMPORTANT: Filename is case-sensitive -->
+    <img src="Logo.svg" alt="Magnolia Creations logo" class="site-logo">
 
     <div class="header-center">
       <h1>Magnolia Creations</h1>
