@@ -1,226 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Magnolia Creations</title>
+<meta charset="UTF-8">
+<title>Magnolia Creations</title>
 
-  <style>
-    :root {
-      --paper: #f7f6f2;
-      --card: #fbfbfa;
-      --text-main: #2a2a2a;
-      --text-muted: #6f6f6f;
-      --border: #dedede;
-    }
+<style>
+:root {
+  --paper: #f7f6f2;
+  --ink: #2b2b2b;
+  --muted: #7a7a7a;
+  --border: #dedede;
+}
 
-    body {
-      margin: 0;
-      background-color: var(--paper);
-      color: var(--text-main);
-      font-family: 'Times New Roman', Georgia, serif;
-      -webkit-font-smoothing: antialiased;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    /* HEADER */
-    .site-header {
-      padding: 72px 24px 56px;
-      background-color: var(--card);
-      border-bottom: 1px solid var(--border);
-      text-align: center;
-    }
+body {
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: 'Times New Roman', Georgia, serif;
+}
 
-    .site-logo {
-      width: 68px;
-      height: auto;
-      margin-bottom: 18px;
-      display: inline-block;
-    }
+/* HEADER */
+.header {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  padding: 60px 24px 48px;
+  text-align: center;
+}
 
-    .site-header h1 {
-      margin: 0;
-      font-size: 42px;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-    }
+.header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
 
-    .site-header p {
-      margin-top: 16px;
-      font-size: 13px;
-      letter-spacing: 3px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
+.logo {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 64px;
+  height: auto;
+  fill: var(--ink);
+}
 
-    /* CARD */
-    .magnolia-card {
-      max-width: 760px;
-      margin: 70px auto;
-      background-color: var(--card);
-      border: 1px solid var(--border);
-      text-align: center;
-      overflow: hidden;
-      transition: box-shadow 0.4s ease, transform 0.4s ease;
-    }
+.header h1 {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
 
-    .magnolia-card:hover,
-    .magnolia-card:focus-within {
-      box-shadow: 0 18px 40px rgba(0,0,0,0.08);
-      transform: translateY(-2px);
-    }
+.header p {
+  margin-top: 18px;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
 
-    .magnolia-preview,
-    .magnolia-full {
-      padding: 48px 36px;
-    }
+/* LISTING CARD */
+.listing {
+  max-width: 760px;
+  margin: 80px auto;
+  background: #fbfbfa;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+}
 
-    .magnolia-preview {
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
+.listing img {
+  width: 100%;
+  display: block;
+}
 
-    .magnolia-full {
-      max-height: 0;
-      opacity: 0;
-      transform: translateY(12px);
-      overflow: hidden;
-      padding-top: 0;
-      padding-bottom: 0;
-      transition:
-        max-height 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-        opacity 0.5s ease,
-        transform 0.5s ease;
-    }
+/* CLOSED LABEL */
+.listing-label {
+  padding: 40px 36px;
+  text-align: center;
+}
 
-    .magnolia-card:hover .magnolia-preview,
-    .magnolia-card:focus-within .magnolia-preview {
-      opacity: 0;
-      transform: translateY(-6px);
-    }
+.listing-label h2 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 400;
+}
 
-    .magnolia-card:hover .magnolia-full,
-    .magnolia-card:focus-within .magnolia-full {
-      max-height: 1400px;
-      opacity: 1;
-      transform: translateY(0);
-      padding: 48px 36px;
-    }
+.listing-label p {
+  margin-top: 12px;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 
-    .magnolia-image {
-      width: 100%;
-      display: block;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      transition: transform 0.6s ease;
-    }
+/* OVERLAY INFO */
+.listing-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(247,246,242,0.95);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px;
+}
 
-    .magnolia-card:hover .magnolia-image {
-      transform: scale(1.015);
-    }
+.listing:hover .listing-overlay,
+.listing:focus-within .listing-overlay {
+  opacity: 1;
+}
 
-    /* CONTACT */
-    .contact-footer {
-      max-width: 760px;
-      margin: 60px auto 90px;
-      text-align: center;
-      color: var(--text-muted);
-    }
+.overlay-inner {
+  max-width: 420px;
+}
 
-    .contact-footer p {
-      font-size: 13px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
+.overlay-inner .tag {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  margin-bottom: 12px;
+}
 
-    .contact-footer a {
-      font-size: 15px;
-      color: var(--text-main);
-      text-decoration: none;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 2px;
-      transition: border-color 0.3s ease;
-    }
+.overlay-inner h2 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 400;
+}
 
-    .contact-footer a:hover {
-      border-color: var(--text-main);
-    }
-  </style>
+.overlay-inner .subtitle {
+  margin-top: 12px;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.overlay-inner hr {
+  width: 60px;
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 28px auto;
+}
+
+.overlay-inner .desc {
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+.overlay-inner .meta {
+  font-size: 14px;
+  line-height: 1.9;
+  margin-bottom: 24px;
+}
+
+.overlay-inner .price {
+  font-size: 15px;
+}
+
+.overlay-inner .note {
+  margin-top: 18px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+
+/* FOOTER CONTACT */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 48px 24px 60px;
+  text-align: center;
+  background: #ffffff;
+}
+
+.footer p {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.footer a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <img src="Logo.svg" alt="Magnolia Creations logo" class="site-logo">
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <img src="Logo.svg" alt="Magnolia Creations logo" class="logo">
 
     <h1>Magnolia Creations</h1>
     <p>Architectural Preset Builds</p>
-  </header>
+  </div>
+</header>
 
-  <!-- CARD -->
-  <div class="magnolia-card" tabindex="0">
+<!-- LISTING -->
+<section class="listing" tabindex="0">
 
-    <div class="magnolia-preview">
-      <h2 style="margin:0; font-size:30px; font-weight:400;">
-        The Magnolia Ridge
-      </h2>
-      <p style="margin-top:14px; font-size:12px; letter-spacing:2.5px; color:var(--text-muted); text-transform:uppercase;">
-        Two-Story Texas-Inspired Home
-      </p>
-    </div>
+  <div class="listing-label">
+    <h2>The Magnolia Ridge</h2>
+    <p>Two-Story Texas-Inspired Home</p>
+  </div>
 
-    <img src="magnolia-ridge.png" alt="The Magnolia Ridge exterior" class="magnolia-image">
+  <img src="magnolia-ridge.png" alt="The Magnolia Ridge exterior">
 
-    <div class="magnolia-full">
+  <div class="listing-overlay">
+    <div class="overlay-inner">
+      <div class="tag">Preset Build</div>
 
-      <p style="font-size:11px; letter-spacing:3px; color:#8a8a8a; text-transform:uppercase;">
-        Preset Build
-      </p>
+      <h2>The Magnolia Ridge</h2>
+      <div class="subtitle">Two-Story Texas-Inspired Home</div>
 
-      <h2 style="margin:0; font-size:30px; font-weight:400;">
-        The Magnolia Ridge
-      </h2>
+      <hr>
 
-      <p style="margin-top:12px; font-size:12px; letter-spacing:2.5px; color:var(--text-muted); text-transform:uppercase;">
-        Two-Story Texas-Inspired Home
-      </p>
+      <div class="desc">
+        A thoughtfully planned suburban home focused on realistic scale,
+        clean exterior articulation, and believable residential flow.
+      </div>
 
-      <hr style="margin:30px auto; width:60px; border:none; border-top:1px solid var(--border);">
-
-      <p style="font-size:14px; line-height:1.65;">
-        A thoughtfully planned suburban home featuring realistic proportions,
-        an open-concept main floor, and subtle exterior articulation.
-      </p>
-
-      <div style="font-size:14px; line-height:1.9; margin:26px 0;">
+      <div class="meta">
         4 Bedrooms • 1.5 Bathrooms<br>
         One-Car Garage<br>
         Approx. Footprint: 14 × 10
       </div>
 
-      <hr style="margin:28px auto; width:60px; border:none; border-top:1px solid var(--border);">
+      <div class="price">
+        <strong>$6</strong> · ~50–58k Bloxburg Cash
+      </div>
 
-      <p style="font-size:15px; margin:0;">
-        <strong>$6</strong>
-      </p>
-
-      <p style="margin-top:6px; font-size:13px; color:var(--text-muted);">
-        Required budget: ~50–58k Bloxburg cash
-      </p>
-
-      <p style="margin-top:26px; font-size:11px; letter-spacing:2px; color:#8a8a8a; text-transform:uppercase;">
-        No Structural Changes · Layout Included
-      </p>
-
+      <div class="note">
+        Layout Included · No Structural Changes
+      </div>
     </div>
   </div>
 
-  <!-- CONTACT -->
-  <div class="contact-footer">
-    <p>To purchase or request a build</p>
-    <a href="https://www.tiktok.com/@domafosoddn?_r=1&_t=ZP-93Q8xEWn4VK" target="_blank">
-      Contact us on TikTok
-    </a>
-  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>Contact & Ordering</p>
+  <a href="https://www.tiktok.com/@domafosoddn?_r=1&_t=ZP-93Q8xEWn4VK" target="_blank">
+    TikTok @domafosoddn
+  </a>
+</footer>
 
 </body>
 </html>
