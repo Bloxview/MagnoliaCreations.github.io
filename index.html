@@ -8,9 +8,10 @@
 <style>
 :root {
   --paper: #f7f6f3;
-  --ink: #2b2b2b;
+  --surface: #ffffff;
+  --ink: #2a2a2a;
   --muted: #7a7a7a;
-  --rule: #e1e1de;
+  --rule: #e2e1dc;
 }
 
 body {
@@ -22,93 +23,106 @@ body {
 
 /* ---------- HEADER ---------- */
 .header {
-  background: #ffffff;
+  background: var(--surface);
   border-bottom: 1px solid var(--rule);
-  padding: 56px 24px 48px;
-  text-align: center;
+  padding: 52px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
 }
 
 .header-logo {
   position: absolute;
   left: 28px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 64px;
+  width: 72px;
 }
 
 .header-logo img {
   width: 100%;
-  height: auto;
   display: block;
 }
 
 .header h1 {
   margin: 0;
-  font-size: 40px;
+  font-size: 38px;
   font-weight: 400;
   letter-spacing: 0.5px;
 }
 
 .header p {
-  margin-top: 14px;
+  margin-top: 12px;
   font-size: 12px;
   letter-spacing: 3px;
   color: var(--muted);
   text-transform: uppercase;
+  text-align: center;
 }
 
-/* ---------- CONTENT ---------- */
-.container {
-  max-width: 820px;
-  margin: 64px auto;
+/* ---------- HERO ---------- */
+.hero {
+  max-width: 900px;
+  margin: 80px auto 0;
   padding: 0 24px;
+  text-align: center;
 }
 
-.section {
-  margin-bottom: 64px;
+.hero h2 {
+  font-size: 36px;
+  font-weight: 400;
+  margin: 0 0 18px;
 }
 
-.section-title {
+.hero p {
+  font-size: 16px;
+  line-height: 1.8;
+  max-width: 640px;
+  margin: 0 auto;
+  color: #3a3a3a;
+}
+
+/* ---------- CONTENT GRID ---------- */
+.content {
+  max-width: 1000px;
+  margin: 80px auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+/* ---------- PANELS ---------- */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  padding: 32px 28px;
+}
+
+.panel h3 {
+  margin: 0 0 14px;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.panel p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.panel small {
+  display: block;
+  margin-bottom: 10px;
   font-size: 11px;
   letter-spacing: 3px;
-  color: var(--muted);
   text-transform: uppercase;
-  margin-bottom: 14px;
-}
-
-.section h2 {
-  font-size: 30px;
-  font-weight: 400;
-  margin: 0 0 18px 0;
-}
-
-.section p {
-  font-size: 15px;
-  line-height: 1.75;
-  margin: 0 0 18px 0;
-}
-
-.rule {
-  width: 60px;
-  border-top: 1px solid var(--rule);
-  margin: 42px 0;
-}
-
-/* ---------- LIST TEXT ---------- */
-.list {
-  font-size: 14px;
-  line-height: 1.9;
-}
-
-.list strong {
-  font-weight: 400;
+  color: var(--muted);
 }
 
 /* ---------- FOOTER ---------- */
 .footer {
   text-align: center;
-  padding: 56px 24px 64px;
+  padding: 64px 24px;
   border-top: 1px solid var(--rule);
   font-size: 12px;
   letter-spacing: 2px;
@@ -119,23 +133,21 @@ body {
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--ink);
-  padding-bottom: 2px;
 }
 
 /* ---------- MOBILE ---------- */
-@media (max-width: 700px) {
+@media (max-width: 720px) {
+  .header {
+    flex-direction: column;
+    gap: 14px;
+  }
+
   .header-logo {
     position: static;
-    transform: none;
-    margin: 0 auto 18px;
   }
 
-  .header {
-    padding-top: 40px;
-  }
-
-  .section h2 {
-    font-size: 26px;
+  .hero h2 {
+    font-size: 30px;
   }
 }
 </style>
@@ -146,75 +158,63 @@ body {
 <!-- HEADER -->
 <div class="header">
   <div class="header-logo">
-    <img src="Logo.svg" alt="Magnolia Creations Logo">
+    <img src="Logo.svg" alt="Magnolia Creations logo">
   </div>
-  <h1>Magnolia Creations</h1>
-  <p>Architectural Preset Builds</p>
+  <div>
+    <h1>Magnolia Creations</h1>
+    <p>Architectural Preset Builds</p>
+  </div>
 </div>
 
-<div class="container">
-
-<!-- ABOUT -->
-<div class="section">
-  <div class="section-title">About Magnolia</div>
-  <h2>Designed once. Built with intention.</h2>
+<!-- HERO -->
+<section class="hero">
+  <h2>Preset architecture, built with intention.</h2>
   <p>
-    Magnolia Creations is a preset architectural studio specializing in
-    thoughtfully designed Bloxburg homes. Every build is designed by me,
-    refined through personal iteration, and offered as a finished layout
-    rather than a commission.
+    Magnolia Creations offers curated Bloxburg home designs —
+    developed once, refined fully, and built directly on your lot.
+    No commissions. No revisions. Just thoughtful residential architecture.
   </p>
-  <p>
-    Instead of custom requests, Magnolia focuses on a curated collection
-    of pre-built designs that can be placed directly onto your lot — clean,
-    efficient, and architecturally intentional.
-  </p>
-</div>
+</section>
 
-<div class="rule"></div>
+<!-- CONTENT -->
+<section class="content">
 
-<!-- HOW IT WORKS -->
-<div class="section">
-  <div class="section-title">How It Works</div>
-  <p class="list">
-    • Choose a preset design from our listings<br>
-    • Purchase the layout for a small fixed fee<br>
-    • The build is placed directly on your lot using your in-game budget<br>
-    • No commissions, revisions, or structural changes
-  </p>
-  <p>
-    This approach allows for consistent quality, faster turnaround,
-    and designs that are fully resolved before they ever reach your plot.
-  </p>
-</div>
+  <div class="panel">
+    <small>What Magnolia Is</small>
+    <h3>Designed, not commissioned</h3>
+    <p>
+      Every Magnolia home is a finished architectural preset.
+      Designs are not custom-made per client, allowing for clarity,
+      consistency, and efficient construction.
+    </p>
+  </div>
 
-<div class="rule"></div>
+  <div class="panel">
+    <small>How It Works</small>
+    <h3>Simple & structured</h3>
+    <p>
+      Choose a preset design, purchase the layout,
+      and have it built directly on your plot using your in-game budget.
+      Exterior color changes may be requested.
+    </p>
+  </div>
 
-<!-- PAYMENTS & POLICIES -->
-<div class="section">
-  <div class="section-title">Payments & Policies</div>
-  <p class="list">
-    <strong>Accepted Payments</strong><br>
-    • Cash App<br>
-    • Select digital gift cards
-  </p>
+  <div class="panel">
+    <small>Payments & Policy</small>
+    <h3>Clear from the start</h3>
+    <p>
+      Accepted payments include Cash App and select gift cards.
+      All builds are sold as-is. Layout redistribution is not permitted.
+    </p>
+  </div>
 
-  <p class="list" style="margin-top: 18px;">
-    <strong>Policies</strong><br>
-    • All designs are preset and sold as-is<br>
-    • Exterior colors may be adjusted upon request<br>
-    • Interiors are not included unless stated<br>
-    • Layout resale or redistribution is not permitted
-  </p>
-</div>
-
-</div>
+</section>
 
 <!-- FOOTER -->
 <div class="footer">
-  Contact & orders via TikTok<br>
+  Contact & orders via TikTok<br><br>
   <a href="https://www.tiktok.com/@domafosoddn?_r=1&_t=ZP-93Q8xEWn4VK" target="_blank">
-    @Magnolia Creations
+    @domafosoddn
   </a>
 </div>
 
