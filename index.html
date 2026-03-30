@@ -61,6 +61,22 @@
         font-size: 14px;
         color: #93c5fd;
     }
+
+    .small-btn {
+        margin-top: 10px;
+        background: #22c55e;
+    }
+
+    .qr {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    canvas {
+        background: white;
+        padding: 10px;
+        border-radius: 10px;
+    }
 </style>
 </head>
 
@@ -75,9 +91,15 @@
     <input id="date" type="date">
     <input id="location" placeholder="Location">
     <textarea id="desc" placeholder="Description"></textarea>
+    
     <button onclick="createEvent()">Generate Link</button>
 
     <div id="generatedLink" class="link-box"></div>
+    <button class="small-btn" onclick="copyLink()">Copy Link</button>
+
+    <div class="qr">
+        <canvas id="qrCanvas"></canvas>
+    </div>
 </div>
 
 <div id="viewer" style="display:none;">
@@ -87,7 +109,12 @@
 
 </div>
 
+<!-- QR Code Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js"></script>
+
 <script>
+let currentLink = "";
+
 function createEvent() {
     const event = {
         title: document.getElementById("title").value,
@@ -97,9 +124,26 @@ function createEvent() {
     };
 
     const encoded = btoa(JSON.stringify(event));
-    const link = window.location.origin + window.location.pathname + "?event=" + encoded;
+    currentLink = window.location.origin + window.location.pathname + "?event=" + encoded;
 
-    document.getElementById("generatedLink").innerText = link;
+    document.getElementById("generatedLink").innerText = currentLink;
+
+    generateQR(currentLink);
+}
+
+function copyLink() {
+    if (!currentLink) return;
+    navigator.clipboard.writeText(currentLink);
+    alert("Link copied!");
+}
+
+function generateQR(link) {
+    const canvas = document.getElementById("qrCanvas");
+    canvas.innerHTML = "";
+
+    QRCode.toCanvas(canvas, link, function (error) {
+        if (error) console.error(error);
+    });
 }
 
 function loadEvent() {
