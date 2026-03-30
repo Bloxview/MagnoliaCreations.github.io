@@ -1,402 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Magnolia Creations</title>
+<meta charset="UTF-8">
+<title>Event Link App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
+<style>
     body {
-      margin: 0;
-      background-color: #fafafa;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: white;
+        margin: 0;
+        padding: 20px;
     }
 
-    /* HEADER (Refined) */
-    .site-header {
-      width: 100%;
-      padding: 90px 24px 60px;
-      background-color: #ffffff;
-      text-align: center;
-      border-bottom: 1px solid #eaeaea;
-      font-family: 'Times New Roman', Georgia, serif;
-      position: relative;
+    .container {
+        max-width: 500px;
+        margin: auto;
     }
 
-    .site-header::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 1px;
-      background-color: #1f1f1f;
+    h1 {
+        text-align: center;
     }
 
-    .site-header img {
-      width: 64px;
-      height: auto;
-      margin-bottom: 24px;
-      display: inline-block;
-      opacity: 0.9;
+    input, textarea, button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        border-radius: 8px;
+        border: none;
+        font-size: 16px;
     }
 
-    .site-header h1 {
-      margin: 0;
-      font-size: 42px;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      color: #1a1a1a;
+    input, textarea {
+        background: #1e293b;
+        color: white;
     }
 
-    .site-header p {
-      margin-top: 16px;
-      font-size: 12px;
-      letter-spacing: 3.5px;
-      color: #7a7a7a;
-      text-transform: uppercase;
+    button {
+        background: #3b82f6;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
     }
 
-    /* LISTING CARD - REWORKED */
-    .magnolia-card {
-      max-width: 720px;
-      margin: 80px auto;
-      background-color: #ffffff;
-      border: 1px solid #e8e8e8;
-      font-family: 'Times New Roman', Georgia, serif;
-      overflow: hidden;
-      position: relative;
-      transition: border-color 0.5s ease;
+    button:hover {
+        background: #2563eb;
     }
 
-    .magnolia-card:hover {
-      border-color: #d0d0d0;
+    .card {
+        background: #1e293b;
+        padding: 20px;
+        border-radius: 12px;
+        margin-top: 20px;
     }
 
-    /* GALLERY - ELEVATED */
-    .magnolia-gallery {
-      display: grid;
-      grid-template-columns: 1fr;
-      position: relative;
+    .link-box {
+        margin-top: 15px;
+        word-break: break-all;
+        font-size: 14px;
+        color: #93c5fd;
     }
-
-    .magnolia-gallery::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, transparent 95%, rgba(255,255,255,0.4) 100%);
-      pointer-events: none;
-      z-index: 1;
-      transition: opacity 0.6s ease;
-    }
-
-    .magnolia-card:hover .magnolia-gallery::before {
-      opacity: 0;
-    }
-
-    .magnolia-gallery img {
-      width: 100%;
-      display: block;
-      transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
-
-    .magnolia-card:hover .magnolia-gallery img {
-      transform: scale(1.02);
-    }
-
-    /* CONTENT CONTAINER - ARCHITECTURAL LAYERING */
-    .card-content {
-      padding: 48px;
-      position: relative;
-      background: #ffffff;
-    }
-
-    /* PREVIEW STATE - MINIMAL */
-    .magnolia-preview {
-      text-align: center;
-      transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* FULL DETAILS - REVEALED */
-    .magnolia-full {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      padding: 48px;
-      background: #ffffff;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: 
-        opacity 0.5s ease 0.1s,
-        transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s;
-      pointer-events: none;
-    }
-
-    /* HOVER/FOCUS STATES - DELIBERATE REVEAL */
-    .magnolia-card:hover .magnolia-preview,
-    .magnolia-card:focus-within .magnolia-preview {
-      opacity: 0;
-      transform: translateY(-12px);
-      pointer-events: none;
-    }
-
-    .magnolia-card:hover .magnolia-full,
-    .magnolia-card:focus-within .magnolia-full {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    /* TYPOGRAPHY & DETAILS - REFINED */
-    .category-label {
-      font-size: 10px;
-      letter-spacing: 3px;
-      color: #8a8a8a;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-      display: block;
-    }
-
-    .product-title {
-      margin: 0;
-      font-size: 32px;
-      font-weight: 400;
-      color: #1a1a1a;
-      line-height: 1.2;
-    }
-
-    .product-subtitle {
-      margin-top: 6px;
-      font-size: 12px;
-      letter-spacing: 2.2px;
-      color: #7a7a7a;
-      text-transform: uppercase;
-    }
-
-    .divider {
-      margin: 32px auto;
-      width: 48px;
-      border: none;
-      border-top: 1px solid #e0e0e0;
-      transition: width 0.4s ease;
-    }
-
-    .magnolia-card:hover .divider {
-      width: 72px;
-    }
-
-    .description {
-      font-size: 15px;
-      line-height: 1.7;
-      color: #333333;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    .spec-list {
-      font-size: 14px;
-      line-height: 1.9;
-      margin: 28px 0;
-      color: #444444;
-      text-align: center;
-    }
-
-    .price {
-      font-size: 18px;
-      color: #1a1a1a;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-    }
-
-    .budget-note {
-      margin-top: 4px;
-      font-size: 12px;
-      color: #6f6f6f;
-      font-style: italic;
-    }
-
-    .decorative-note {
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: #8a8a8a;
-      text-transform: uppercase;
-      margin-top: 32px;
-      padding-top: 20px;
-      border-top: 1px solid #f0f0f0;
-    }
-
-    /* CONTACT - REFINED */
-    .contact-footer {
-      max-width: 720px;
-      margin: 80px auto 100px;
-      text-align: center;
-      font-family: 'Times New Roman', Georgia, serif;
-      color: #6f6f6f;
-    }
-
-    .contact-footer p {
-      font-size: 12px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .contact-footer a {
-      font-size: 14px;
-      color: #1a1a1a;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      padding-bottom: 1px;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .contact-footer a::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background-color: #1a1a1a;
-      transition: width 0.4s ease;
-    }
-
-    .contact-footer a:hover::after {
-      width: 100%;
-    }
-
-    /* MOBILE - SIMPLIFIED EXPERIENCE */
-    @media (max-width: 768px) {
-      .magnolia-card {
-        margin: 40px 20px;
-        border: 1px solid #e8e8e8;
-      }
-      
-      .magnolia-preview {
-        display: none;
-      }
-      
-      .magnolia-full {
-        position: relative;
-        opacity: 1;
-        transform: none;
-        padding: 36px 24px;
-        pointer-events: auto;
-      }
-      
-      .magnolia-gallery::before {
-        display: none;
-      }
-      
-      .card-content {
-        padding: 0;
-      }
-      
-      .magnolia-card:hover .magnolia-gallery img {
-        transform: none;
-      }
-    }
-
-    /* REDUCED MOTION */
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        transition: none !important;
-        transform: none !important;
-        animation: none !important;
-      }
-      
-      .magnolia-preview {
-        display: none;
-      }
-      
-      .magnolia-full {
-        position: relative;
-        opacity: 1;
-        transform: none;
-        pointer-events: auto;
-      }
-    }
-  </style>
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <div class="site-header">
-    <img src="Logo.svg" alt="Magnolia Creations logo">
-    <h1>Magnolia Creations</h1>
-    <p>Architectural Preset Builds</p>
-  </div>
+<div class="container">
 
-  <!-- LISTING CARD -->
-  <div class="magnolia-card" tabindex="0">
-    
-    <!-- GALLERY -->
-    <div class="magnolia-gallery">
-      <img src="Magnolia Porch 1.png" alt="Magnolia Porch exterior view one">
-      <img src="Magnolia Porch 2.png" alt="Magnolia Porch exterior view two">
-      <img src="Magnolia Porch 3.png" alt="Magnolia Porch exterior view three">
-    </div>
+<h1>Event Creator</h1>
 
-    <!-- CONTENT CONTAINER -->
-    <div class="card-content">
-      
-      <!-- PREVIEW STATE -->
-      <div class="magnolia-preview">
-        <span class="category-label">Preset Build</span>
-        <h2 class="product-title">The Magnolia Porch</h2>
-        <p class="product-subtitle">Southern-Inspired Exterior Detail</p>
-      </div>
+<div id="creator">
+    <input id="title" placeholder="Event Title">
+    <input id="date" type="date">
+    <input id="location" placeholder="Location">
+    <textarea id="desc" placeholder="Description"></textarea>
+    <button onclick="createEvent()">Generate Link</button>
 
-      <!-- FULL DETAILS -->
-      <div class="magnolia-full">
-        <span class="category-label">Preset Build</span>
-        <h2 class="product-title">The Magnolia Porch</h2>
-        <p class="product-subtitle">Southern-Inspired Exterior Detail</p>
-        
-        <hr class="divider">
-        
-        <p class="description">
-          A refined porch-focused preset emphasizing proportion, negative space, 
-          and traditional Southern architectural language. Crafted with attention 
-          to material harmony and spatial rhythm.
-        </p>
-        
-        <div class="spec-list">
-          Exterior-Only Preset<br>
-          Porch + Entry Detailing<br>
-          Approx. Footprint: 6 × 4
-        </div>
-        
-        <hr class="divider">
-        
-        <div class="price">$4</div>
-        <p class="budget-note">Required budget: ~15–20k Bloxburg cash</p>
-        
-        <p class="decorative-note">
-          No Structural Changes · Decorative Focus · Material Harmony
-        </p>
-      </div>
-      
-    </div>
-  </div>
+    <div id="generatedLink" class="link-box"></div>
+</div>
 
-  <!-- CONTACT -->
-  <div class="contact-footer">
-    <p>To purchase or request a build</p>
-    <a href="https://www.tiktok.com/@domafosoddn?_r=1&_t=ZP-93Q8xEWn4VK" target="_blank">
-      Contact us on TikTok
-    </a>
-  </div>
+<div id="viewer" style="display:none;">
+    <h1>Event</h1>
+    <div class="card" id="eventDisplay"></div>
+</div>
+
+</div>
+
+<script>
+function createEvent() {
+    const event = {
+        title: document.getElementById("title").value,
+        date: document.getElementById("date").value,
+        location: document.getElementById("location").value,
+        desc: document.getElementById("desc").value
+    };
+
+    const encoded = btoa(JSON.stringify(event));
+    const link = window.location.origin + window.location.pathname + "?event=" + encoded;
+
+    document.getElementById("generatedLink").innerText = link;
+}
+
+function loadEvent() {
+    const params = new URLSearchParams(window.location.search);
+    const data = params.get("event");
+
+    if (!data) return;
+
+    try {
+        const event = JSON.parse(atob(data));
+
+        document.getElementById("creator").style.display = "none";
+        document.getElementById("viewer").style.display = "block";
+
+        document.getElementById("eventDisplay").innerHTML = `
+            <h2>${event.title}</h2>
+            <p><strong>Date:</strong> ${event.date}</p>
+            <p><strong>Location:</strong> ${event.location}</p>
+            <p>${event.desc}</p>
+        `;
+    } catch (e) {
+        console.error("Invalid event data");
+    }
+}
+
+loadEvent();
+</script>
 
 </body>
 </html>
