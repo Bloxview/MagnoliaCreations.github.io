@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CANVAS – A DLU Creation</title>
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Welcome Modal (First Run) -->
+    <div id="welcomeModal" class="modal modal-glass hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-welcome">
+            <h2>Welcome to CANVAS</h2>
+            <p class="welcome-subtitle">A DLU creation</p>
+            <p class="welcome-text">A user-first visual wishlist. Everything is stored privately on your device.</p>
+            <button class="btn btn-primary" id="welcomeClose">Begin</button>
+        </div>
+    </div>
+
+    <!-- Tooltip Container -->
+    <div id="tooltipContainer" class="tooltip-container"></div>
+
+    <!-- Draft Preview Modal -->
+    <div id="draftModal" class="modal modal-glass hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-draft">
+            <h2>Preview</h2>
+            <div id="draftPreview" class="draft-preview">
+                <div id="draftImage" class="draft-image"></div>
+                <div class="draft-form">
+                    <label for="draftName">Name this item</label>
+                    <input type="text" id="draftName" class="glass-input" placeholder="e.g., Blue Ceramic Mug" />
+                    <div class="draft-actions">
+                        <button class="btn btn-ghost" id="draftCancel">Cancel</button>
+                        <button class="btn btn-primary" id="draftConfirm">Add to Canvas</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Item Modal (Full Screen Folder) -->
+    <div id="itemModal" class="modal modal-glass modal-fullscreen hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-item">
+            <button class="modal-close" id="modalClose">✕</button>
+            <div id="modalBody" class="modal-body">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div class="app">
+        <header class="header">
+            <div class="header-branding">
+                <h1 class="logo">CANVAS</h1>
+                <p class="tagline">A DLU creation</p>
+            </div>
+            <div class="header-controls">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Search..."
+                />
+                <button class="btn btn-ghost" id="exportBtn" title="Export">↓</button>
+                <button class="btn btn-ghost" id="importBtn" title="Import">↑</button>
+            </div>
+        </header>
+
+        <section class="input-zone">
+            <div class="input-row">
+                <input 
+                    type="url" 
+                    id="urlInput" 
+                    class="glass-input" 
+                    placeholder="Paste a link..."
+                    autocomplete="off"
+                />
+                <button class="btn btn-ghost" id="pasteBtn" title="Paste from clipboard">⎘</button>
+            </div>
+
+            <div class="drop-zone" id="dropZone">
+                <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 2v16M5 9l7-7 7 7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p class="drop-text">Drag image or link here</p>
+                <p class="drop-hint">or click to browse</p>
+                <input type="file" id="imageInput" class="hidden-input" accept="image/*" />
+            </div>
+        </section>
+
+        <section class="canvas-section">
+            <div class="canvas-header">
+                <h2>Your Canvas</h2>
+                <span class="item-count" id="itemCount">0 items</span>
+            </div>
+            <div class="canvas-grid" id="canvasGrid">
+                <!-- Items populated by JS -->
+            </div>
+            <div class="empty-state" id="emptyState">
+                <p>Your canvas is empty</p>
+                <p class="empty-hint">Start adding items to build your collection</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="privacy-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Local • Private • Yours</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Hidden Inputs -->
+    <input type="file" id="jsonInput" class="hidden-input" accept=".json" />
+
+    <script src="script.js"></script>
+</body>
+</html>
