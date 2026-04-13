@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CANVAS – A DLU Creation</title>
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-brand">
+                <h1 class="logo">CANVAS</h1>
+            </div>
+            <div class="header-controls">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Search items..."
+                />
+                <button class="btn btn-icon" id="exportBtn" title="Export">↓</button>
+                <button class="btn btn-icon" id="importBtn" title="Import">↑</button>
+            </div>
+        </header>
+
+        <!-- Canvas Section (Main) -->
+        <section class="canvas-section">
+            <div class="canvas-top">
+                <div>
+                    <h2>Your Items</h2>
+                    <span class="item-count" id="itemCount">0</span>
+                </div>
+                <button class="btn btn-primary btn-add" id="quickAddBtn">+ Add</button>
+            </div>
+
+            <div class="canvas-grid" id="canvasGrid"></div>
+
+            <div class="empty-state" id="emptyState">
+                <p>Nothing here yet</p>
+                <p class="empty-hint">Tap <span class="btn-text">+ Add</span> to start building your collection</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <span class="privacy-text">Everything stays on your device</span>
+        </footer>
+    </div>
+
+    <!-- Quick Add Modal -->
+    <div id="quickAddModal" class="modal hidden">
+        <div id="quickAddOverlay" class="modal-overlay"></div>
+        <div class="modal-content modal-quick-add">
+            <div class="modal-header">
+                <h2>Add item</h2>
+                <button class="modal-close" id="quickAddClose">✕</button>
+            </div>
+
+            <form id="quickAddForm" class="quick-add-form">
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        id="quickAddTitle" 
+                        class="form-input" 
+                        placeholder="Give it a name..."
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <input 
+                        type="url" 
+                        id="quickAddLink" 
+                        class="form-input" 
+                        placeholder="Add a link (optional)"
+                    />
+                </div>
+
+                <div id="quickAddImage" class="quick-add-image-preview">
+                    <div class="quick-add-image-placeholder">No image</div>
+                </div>
+
+                <div class="quick-add-controls">
+                    <button type="button" class="btn btn-secondary" id="quickAddImageBtn">
+                        + Add image
+                    </button>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+
+            <input 
+                type="file" 
+                id="quickAddImageInput" 
+                class="hidden-input" 
+                accept="image/*" 
+            />
+        </div>
+    </div>
+
+    <!-- Item Details Modal -->
+    <div id="itemDetailsModal" class="modal hidden">
+        <div id="itemDetailsOverlay" class="modal-overlay"></div>
+        <div class="modal-content modal-item-details">
+            <button class="modal-close" id="itemDetailsClose">✕</button>
+            <div id="itemDetailsBody" class="item-details-body"></div>
+        </div>
+    </div>
+
+    <!-- Hidden Inputs -->
+    <input type="file" id="jsonInput" class="hidden-input" accept=".json" />
+
+    <script src="script.js"></script>
+</body>
+</html>
