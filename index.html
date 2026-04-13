@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAULT – A DLU Creation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Welcome Modal (First Run) -->
+    <div id="welcomeModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Welcome to VAULT</h2>
+            <p><strong>A DLU creation</strong></p>
+            <p>Hello, this is a project by Aden at DLU. We created a user-first visual wishlist. Everything is stored privately on your device.</p>
+            <button class="btn btn-primary" id="welcomeClose">Get Started</button>
+        </div>
+    </div>
+
+    <!-- Tooltip Container -->
+    <div id="tooltipContainer" class="tooltip-container"></div>
+
+    <!-- Draft Preview Modal -->
+    <div id="draftModal" class="modal hidden">
+        <div class="modal-content modal-draft">
+            <h2>Preview Your Item</h2>
+            <div id="draftPreview" class="draft-preview">
+                <div id="draftImage" class="draft-image"></div>
+                <div class="draft-form">
+                    <label for="draftName">Item Name</label>
+                    <input type="text" id="draftName" placeholder="e.g., Blue Ceramic Mug" />
+                    <div class="draft-actions">
+                        <button class="btn btn-secondary" id="draftCancel">Cancel</button>
+                        <button class="btn btn-primary" id="draftConfirm">Confirm Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Item Modal (Full Screen) -->
+    <div id="itemModal" class="modal modal-fullscreen hidden">
+        <div class="modal-content modal-item">
+            <button class="modal-close" id="modalClose">×</button>
+            <div id="modalBody" class="modal-body">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div class="container">
+        <header class="header">
+            <div>
+                <h1>VAULT</h1>
+                <p class="subtitle">A DLU creation</p>
+            </div>
+            <div class="header-actions">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Search items..."
+                />
+                <button class="btn btn-secondary" id="exportBtn" data-tooltip="Download all items as JSON">Export</button>
+                <button class="btn btn-secondary" id="importBtn" data-tooltip="Upload JSON to restore items">Import</button>
+            </div>
+        </header>
+
+        <section class="input-section">
+            <div class="input-row">
+                <input 
+                    type="url" 
+                    id="urlInput" 
+                    class="url-input" 
+                    placeholder="https://..."
+                    autocomplete="off"
+                />
+                <button class="btn btn-secondary" id="pasteBtn" data-tooltip="Auto-fill from clipboard">Paste</button>
+            </div>
+
+            <div class="drop-zone" id="dropZone" data-tooltip="Drop image or URL here">
+                <p>Drag image or URL here</p>
+                <p class="drop-hint">or click to select image</p>
+                <input type="file" id="imageInput" class="hidden-input" accept="image/*" />
+            </div>
+        </section>
+
+        <section class="vault-section">
+            <div class="vault-header">
+                <h2>Your Vault</h2>
+                <span class="item-count" id="itemCount">0 items</span>
+            </div>
+            <div class="vault-grid" id="vaultGrid">
+                <!-- Items populated by JS -->
+            </div>
+            <div class="empty-state" id="emptyState">
+                <p>Your vault is empty</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Hidden Inputs -->
+    <input type="file" id="jsonInput" class="hidden-input" accept=".json" />
+
+    <script src="script.js"></script>
+</body>
+</html>
